@@ -9,7 +9,10 @@ import { mockRequest } from "./mock-db";
  * Si el backend todavía no está disponible, se usa un respaldo local en memoria
  * para poder navegar la aplicación sin romper la experiencia.
  */
-export const API_BASE_URL = (import.meta.env["VITE_API_URL"] as string | undefined) ?? "/api";
+const API_URL_CONFIGURADA = (import.meta.env["VITE_API_URL"] as string | undefined)?.trim();
+
+/** Sólo se hacen llamadas HTTP reales si VITE_API_URL está configurada. */
+export const API_BASE_URL = API_URL_CONFIGURADA ?? "/api";
 
 export class ApiError extends Error {
   constructor(
