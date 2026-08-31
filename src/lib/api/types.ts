@@ -1,5 +1,5 @@
 export interface Cliente {
-  id: number;
+  id: string;
   nombre: string;
   apellido: string;
   telefono: string;
@@ -10,33 +10,33 @@ export interface Cliente {
 export type Especie = "Perro" | "Gato" | "Ave" | "Roedor" | "Reptil" | "Otro";
 
 export interface Mascota {
-  id: number;
+  id: string;
   nombre: string;
-  especie: Especie;
+  especie: string;
   raza: string;
   fechaNacimiento: string;
-  clienteId: number;
+  clienteId: string;
 }
 
 export interface Categoria {
-  id: number;
+  id: string;
   nombre: string;
   descripcion: string;
 }
 
 export interface Producto {
-  id: number;
+  id: string;
   nombre: string;
   descripcion: string;
   precio: number;
   stock: number;
   stockMinimo: number;
-  categoriaId: number;
+  categoriaId: string;
   imagenUrl: string;
 }
 
 export interface Empleado {
-  id: number;
+  id: string;
   nombre: string;
   apellido: string;
   cargo: string;
@@ -45,7 +45,7 @@ export interface Empleado {
 }
 
 export interface DetalleVenta {
-  productoId: number;
+  productoId: string;
   productoNombre: string;
   cantidad: number;
   precioUnitario: number;
@@ -53,18 +53,18 @@ export interface DetalleVenta {
 }
 
 export interface Venta {
-  id: number;
-  clienteId: number;
-  empleadoId: number;
+  id: string;
+  clienteId: string;
+  empleadoId: string;
   fecha: string;
   total: number;
   detalles: DetalleVenta[];
 }
 
 export interface VentaPayload {
-  clienteId: number;
-  empleadoId: number;
-  detalles: Array<{ productoId: number; cantidad: number }>;
+  clienteId: string;
+  empleadoId: string;
+  detalles: Array<{ productoId: string; cantidad: number }>;
 }
 
 export interface DashboardResumen {

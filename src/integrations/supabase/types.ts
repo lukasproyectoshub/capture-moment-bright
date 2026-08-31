@@ -71,6 +71,80 @@ export type Database = {
         }
         Relationships: []
       }
+      empleados: {
+        Row: {
+          apellido: string
+          cargo: string
+          created_at: string
+          email: string | null
+          id: string
+          nombre: string
+          telefono: string
+          updated_at: string
+        }
+        Insert: {
+          apellido?: string
+          cargo?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          nombre: string
+          telefono?: string
+          updated_at?: string
+        }
+        Update: {
+          apellido?: string
+          cargo?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          nombre?: string
+          telefono?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      mascotas: {
+        Row: {
+          cliente_id: string | null
+          created_at: string
+          especie: string
+          fecha_nacimiento: string | null
+          id: string
+          nombre: string
+          raza: string
+          updated_at: string
+        }
+        Insert: {
+          cliente_id?: string | null
+          created_at?: string
+          especie?: string
+          fecha_nacimiento?: string | null
+          id?: string
+          nombre: string
+          raza?: string
+          updated_at?: string
+        }
+        Update: {
+          cliente_id?: string | null
+          created_at?: string
+          especie?: string
+          fecha_nacimiento?: string | null
+          id?: string
+          nombre?: string
+          raza?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mascotas_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pedido_items: {
         Row: {
           cantidad: number
@@ -126,6 +200,7 @@ export type Database = {
         Row: {
           cliente_id: string | null
           created_at: string
+          empleado_id: string | null
           estado: string
           fecha: string
           id: string
@@ -135,6 +210,7 @@ export type Database = {
         Insert: {
           cliente_id?: string | null
           created_at?: string
+          empleado_id?: string | null
           estado?: string
           fecha?: string
           id?: string
@@ -144,6 +220,7 @@ export type Database = {
         Update: {
           cliente_id?: string | null
           created_at?: string
+          empleado_id?: string | null
           estado?: string
           fecha?: string
           id?: string
@@ -156,6 +233,13 @@ export type Database = {
             columns: ["cliente_id"]
             isOneToOne: false
             referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pedidos_empleado_id_fkey"
+            columns: ["empleado_id"]
+            isOneToOne: false
+            referencedRelation: "empleados"
             referencedColumns: ["id"]
           },
         ]
