@@ -47,6 +47,12 @@ async function httpRequest<T>(method: HttpMethod, path: string, body?: unknown):
 }
 
 export async function apiRequest<T>(method: HttpMethod, path: string, body?: unknown): Promise<T> {
+  if (!API_URL_CONFIGURADA) {
+    // Sin backend Java configurado: se usa el respaldo local en memoria.
+    backendDisponible = false;
+    return mockRequest<T>(method, path, body);
+  }
+
   if (typeof window === "undefined") {
     // Durante el render en servidor no se llama a la API: los datos se cargan en el cliente.
     return mockRequest<T>(method, path, body);
